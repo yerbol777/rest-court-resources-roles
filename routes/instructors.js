@@ -1,28 +1,27 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../DB');
-var testcrud = require('../models/instructorsModel');
+var instructors = require('../models/instructorsModel');
 
 // read
 router.get('/', function(req, res) {
     res.responseType = 'text';
-    testcrud.select(res);
+    instructors.select(req.body, res);
 });
 
 // create
 router.post('/', function(req, res) {
-    testcrud.create(req.body, res);
+    instructors.create(req.body, res);
 });
 
 // update
 router.put('/', function(req, res) {
-    testcrud.update(req.body, res);
+    instructors.update(req.body, res);
 });
 
 // delete
 router.delete('/:id', function(req, res) {
     console.log(req.params.id);
-    testcrud.delete(req.params.id, res);
+    instructors.delete(req.params.id, res);
 });
 
 module.exports = router;

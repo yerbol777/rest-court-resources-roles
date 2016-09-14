@@ -1,16 +1,16 @@
 var db = require('../DB');
 
-function testcrud() {
-    // SELECT ITEMS
-    this.select = function(res) {
+function instructors() {
+    // SELECT INSTRUCTORS
+    this.select = function(req, res) {
         var sql = 'CALL INSTRUCTORS_SELECT()';
         db.query(sql, function (err, result) {
             res.responseType = 'text';
             res.json(result[0]);
         });
-    }
+    };
 
-    // CREATE NEW ITEM
+    // CREATE NEW INSTRUCTOR
     this.create = function(instructor, res) {
         var sql = 'CALL INSTRUCTORS_CREATE(?, ?, ?, ?)';
         db.query(sql, [instructor.name, instructor.address, instructor.phone, instructor.email], function (err, result) {
@@ -24,7 +24,7 @@ function testcrud() {
         });
     };
 
-    // UPDATE ITEM
+    // UPDATE INSTRUCTOR
     this.update = function(instructor, res) {
         var sql = 'CALL INSTRUCTORS_UPDATE(?, ?, ?, ?, ?)';
         db.query(sql, [instructor.id, instructor.name, instructor.address, instructor.phone, instructor.email], function (err, result) {
@@ -37,7 +37,7 @@ function testcrud() {
         });
     };
 
-    // DELETE ITEM
+    // DELETE INSTRUCTOR
     this.delete = function(id, res) {
         var sql = 'CALL INSTRUCTORS_DELETE(?)';
         db.query(sql, [id], function (err, result) {
@@ -51,4 +51,4 @@ function testcrud() {
     };
 }
 
-module.exports = new testcrud();
+module.exports = new instructors();
