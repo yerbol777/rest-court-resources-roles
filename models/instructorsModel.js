@@ -11,9 +11,9 @@ function instructors() {
     };
 
     // CREATE NEW INSTRUCTOR
-    this.create = function(instructor, res) {
+    this.create = function(req, res) {
         var sql = 'CALL INSTRUCTORS_CREATE(?, ?, ?, ?)';
-        db.query(sql, [instructor.name, instructor.address, instructor.phone, instructor.email], function (err, result) {
+        db.query(sql, [req.name, req.address, req.phone, req.email], function (err, result) {
             if (err) {
                 console.log(err);
             }
@@ -25,9 +25,9 @@ function instructors() {
     };
 
     // UPDATE INSTRUCTOR
-    this.update = function(instructor, res) {
+    this.update = function(req, res) {
         var sql = 'CALL INSTRUCTORS_UPDATE(?, ?, ?, ?, ?)';
-        db.query(sql, [instructor.id, instructor.name, instructor.address, instructor.phone, instructor.email], function (err, result) {
+        db.query(sql, [req.id, req.name, req.address, req.phone, req.email], function (err, result) {
             if (err) {
                 console.log(err);
             }
