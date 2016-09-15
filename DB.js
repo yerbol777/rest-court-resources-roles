@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var dbconfig = require('./config/dbconfig');
+var dbconfig = require('./config/config');
 
 function DB() {
     var pool = mysql.createPool(dbconfig.database);
