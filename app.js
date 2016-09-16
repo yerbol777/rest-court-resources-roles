@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var instructors = require('./routes/instructors');
 var events = require('./routes/events');
+var courts = require('./routes/courts');
 
 var app = express();
 
@@ -25,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*"); // set specific hostname after moving to production
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   next();
@@ -35,6 +36,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/instructors', instructors);
 app.use('/events', events);
+app.use('/courts', courts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

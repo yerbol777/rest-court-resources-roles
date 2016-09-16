@@ -3,15 +3,15 @@ var db = require('../DB');
 function events() {
     // SELECT EVENTS
     this.select = function (req, res) {
-        if (req.query.court_id != null) {
+        if (req.query.instructor_id == null) {
             var sql = 'CALL EVENTS_BY_COURT_ID_SELECT(?)';
             db.query(sql, [req.query.court_id], function (err, result) {
                 res.responseType = 'text';
                 res.json(result[0]);
             });
         } else {
-            var sql = 'CALL EVENTS_BY_INSTRUCTOR_ID_SELECT(?)';
-            db.query(sql, [req.query.instructor_id], function (err, result) {
+            var sql = 'CALL EVENTS_BY_INSTRUCTOR_ID_SELECT(?,?)';
+            db.query(sql, [req.query.instructor_id, req.query.court_id], function (err, result) {
                 res.responseType = 'text';
                 res.json(result[0]);
             });
