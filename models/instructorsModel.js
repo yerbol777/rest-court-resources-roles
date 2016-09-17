@@ -1,19 +1,19 @@
 var db = require('../DB');
 
-function testcrud() {
-    // SELECT ITEMS
-    this.select = function(res) {
+function instructors() {
+    // SELECT INSTRUCTORS
+    this.select = function(req, res) {
         var sql = 'CALL INSTRUCTORS_SELECT()';
         db.query(sql, function (err, result) {
             res.responseType = 'text';
             res.json(result[0]);
         });
-    }
+    };
 
-    // CREATE NEW ITEM
-    this.create = function(instructor, res) {
+    // CREATE NEW INSTRUCTOR
+    this.create = function(req, res) {
         var sql = 'CALL INSTRUCTORS_CREATE(?, ?, ?, ?)';
-        db.query(sql, [instructor.name, instructor.address, instructor.phone, instructor.email], function (err, result) {
+        db.query(sql, [req.name, req.address, req.phone, req.email], function (err, result) {
             if (err) {
                 console.log(err);
             }
@@ -24,10 +24,10 @@ function testcrud() {
         });
     };
 
-    // UPDATE ITEM
-    this.update = function(instructor, res) {
+    // UPDATE INSTRUCTOR
+    this.update = function(req, res) {
         var sql = 'CALL INSTRUCTORS_UPDATE(?, ?, ?, ?, ?)';
-        db.query(sql, [instructor.id, instructor.name, instructor.address, instructor.phone, instructor.email], function (err, result) {
+        db.query(sql, [req.id, req.name, req.address, req.phone, req.email], function (err, result) {
             if (err) {
                 console.log(err);
             }
@@ -37,7 +37,7 @@ function testcrud() {
         });
     };
 
-    // DELETE ITEM
+    // DELETE INSTRUCTOR
     this.delete = function(id, res) {
         var sql = 'CALL INSTRUCTORS_DELETE(?)';
         db.query(sql, [id], function (err, result) {
@@ -51,4 +51,4 @@ function testcrud() {
     };
 }
 
-module.exports = new testcrud();
+module.exports = new instructors();
