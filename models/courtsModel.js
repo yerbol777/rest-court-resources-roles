@@ -13,7 +13,7 @@ function courts() {
     // CREATE NEW COURT
     this.create = function (req, res) {
         var sql = 'CALL COURTS_CREATE(?,?)';
-        db.query(sql, [req.body.name, req.body.type], function (err, result) {
+        db.query(sql, [req.body.name, req.body.type_id], function (err, result) {
             if (err) {
                 console.log(err);
             }
@@ -27,7 +27,7 @@ function courts() {
     // UPDATE COURT
     this.update = function (req, res) {
         var sql = "CALL COURTS_UPDATE(?,?,?)";
-        db.query(sql, [req.body.id, req.body.name, req.body.type], function (err, result) {
+        db.query(sql, [req.body.id, req.body.name, req.body.type_id], function (err, result) {
             if (err) {
                 console.log(err);
             }
