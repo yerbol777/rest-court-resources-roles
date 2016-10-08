@@ -4,14 +4,14 @@ function events() {
     // SELECT EVENTS
     this.select = function (req, res) {
         if (req.query.instructor_id == null) {
-            var sql = 'CALL EVENTS_BY_COURT_ID_SELECT(?)';
-            db.query(sql, [req.query.court_id], function (err, result) {
+            var sql = 'CALL EVENTS_BY_COURT_ID_SELECT(?,?)';
+            db.query(sql, [req.query.court_id, req.query.court_type_id], function (err, result) {
                 res.responseType = 'text';
                 res.json(result[0]);
             });
         } else {
-            var sql = 'CALL EVENTS_BY_INSTRUCTOR_ID_SELECT(?,?)';
-            db.query(sql, [req.query.instructor_id, req.query.court_id], function (err, result) {
+            var sql = 'CALL EVENTS_BY_INSTRUCTOR_ID_SELECT(?,?,?)';
+            db.query(sql, [req.query.instructor_id, req.query.court_id, req.query.court_type_id], function (err, result) {
                 res.responseType = 'text';
                 res.json(result[0]);
             });
@@ -34,8 +34,8 @@ function events() {
 
     // UPDATE EVENTS
     this.update = function(req, res) {
-        var sql = 'CALL EVENTS_UPDATE(?, ?, ?, ?, ?, ?)';
-        db.query(sql, [req.id, req.title, req.court_id, req.instructor_id, req.start_datetime, req.end_datetime], function (err, result) {
+        var sql = 'CALL EVENTS_UPDATE(?, ?, ?, ?, ?, ?, ?)';
+        db.query(sql, [req.id, req.title, req.court_id, req.instructor_id, req.start_datetime, req.end_datetime, req.selected_court_id], function (err, result) {
             if (err) {
                 console.log(err);
             }
