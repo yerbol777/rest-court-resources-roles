@@ -45,11 +45,18 @@ function courts() {
         db.query(sql, [id], function (err, result) {
             if (err) {
                 console.log(err);
+                res.send(err);
             }
             else {
-                res.send("DONE");
+                if (result != undefined && result != null && result.length > 1) {
+                    res.send(result[0][0]);
+                }
+                else {
+                    res.send("DONE");
+
+                }
             }
-        })
+        });
     }
 
 }

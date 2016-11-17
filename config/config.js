@@ -2,12 +2,13 @@ module.exports = {
 
     //mysql database credentials
     database: {
-        host: 'localhost',
+        host: '95.59.26.76',
         user: 'root',
         password: '434',
-        database: 'tsadb'
+        database: 'tsadb_resources3',
+        multipleStatements: true
     },
 
     // jwt secret key
-    jwtSecret: 'timesetapp'
+    jwtSecret: 'timesetapp_resources'
 };

@@ -20,7 +20,6 @@ router.put('/', function(req, res) {
 
 // delete
 router.delete('/:id', function(req, res) {
-    console.log(req.params.id);
     instructors.delete(req.params.id, res);
 });
 

@@ -17,7 +17,7 @@ function auth() {
                 //token
                 var user = result[0][0],
                     token = jwt.encode(
-                        {user: user, expires: moment().add(1, 'days').valueOf()},
+                        {user: user, expires: moment().add(7, 'days').valueOf()},
                         secretKey);
 
                 user.token = token;
