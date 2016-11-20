@@ -8,9 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var instructors = require('./routes/instructors');
-var events = require('./routes/events');
 var courts = require('./routes/courts');
 var events = require('./routes/events');
+var eventsInstructor = require('./routes/eventsInstructor');
 var auth = require('./routes/auth');
 var courtTypes = require('./routes/courtTypes');
 var jwtauth = require('./middleware/jwtauth');
@@ -42,6 +42,7 @@ app.use(jwtauth);
 app.use('/users', users);
 app.use('/instructors', instructors);
 app.use('/events', events);
+app.use('/eventsInstructor', eventsInstructor);
 app.use('/courts', courts);
 app.use('/courtTypes', courtTypes);
 
