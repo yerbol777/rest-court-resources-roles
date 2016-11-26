@@ -4,8 +4,8 @@ function eventsInstructor() {
     // SELECT EVENTS
     this.select = function (req, res) {
 
-        var sql = 'CALL EVENTS_BY_INSTRUCTOR_ID_SELECT_OWN(?)';
-        db.query(sql, [req.query.instructor_id], function (err, result) {
+        var sql = 'CALL EVENTS_BY_COURT_ID_SELECT_INSTR(?,?,?)';
+        db.query(sql, [req.query.court_id, req.query.court_type_id, req.query.instructor_id], function (err, result) {
             if (err) {
                 console.log(err.message);
                 return;
